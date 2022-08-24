@@ -1,0 +1,112 @@
+function random_bits {
+	ccolor="%{%F{${RAINBOW[$((RANDOM % ${#RAINBOW}+1))]}}%}" # Corner Color
+	bcolor="%{%F{${RAINBOW[$((RANDOM % ${#RAINBOW}+1))]}}%}" # Bracket Color
+	dcolor="%{%F{${RAINBOW[$((RANDOM % ${#RAINBOW}+1))]}}%}" # Dash Color
+	pcolor="%{%F{${RAINBOW[$((RANDOM % ${#RAINBOW}+1))]}}%}" # Prompt Color
+    GITBG="%{%K{${BG[$((RANDOM % ${#BG}+1))]}}%}"
+    GITFG="%{%F{${FG[$((RANDOM % ${#FG}+1))]}}%}"
+    OKCOLOR="%{%F{${RAINBOW[$((RANDOM % ${#RAINBOW}+1))]}}%}" # Github Branch OK
+}
+function return_preset() {
+	unset RAINBOW
+	case $1 in
+		kandi)
+			RAINBOW=(129 135 99 141 171 177 207 213 134 140 128)
+			BG=(55)
+			FG=(199 200 201)
+		;;
+		mid)
+			RAINBOW=(25 26 27 31 37 44 63 69 75 111 117 151)
+			BG=(17)
+			FG=(49 50 51)
+		;;
+		fire)
+			RAINBOW=(124 160 198 208 209 210 214 215 216 190 226 227 228 245 246)
+			BG=(52)
+			FG=(229 230 231)
+		;;
+		lime)
+			RAINBOW=(35 42 47 77 84 112 149 155 184 192)
+			BG=(22)
+			FG=(118 119 120)
+		;;
+		purples)
+			RAINBOW=(93 129 165 171 201 207)
+			BG=(54)
+			FG=(199 200 201)
+		;;
+		reds)
+			RAINBOW=(124 125 160 161 162 196 197 198)
+			BG=(52)
+			FG=(160 196)
+		;;
+		greens)
+			RAINBOW=(34 40 41 46 47 48 118 119 120)
+			BG=(22)
+			FG=(82 83 84 113 114)
+		;;
+		yellows)
+			RAINBOW=(148 149 150 154 155 156 190 191 192 193 194)
+			BG=(144)
+			FG=(226 227 228)
+		;;
+		oranges)
+			RAINBOW=(172 173 174 202 203 204 208 209 210)
+			BG=(94)
+			FG=(202 203 204)
+		;;
+		blues)
+			RAINBOW=(24 25 27 30 31 32 33 37 38 39 44 45 51 67 68 69 73 74 75 79 80 81 121 123 123)
+			BG=(17  18  19)
+			FG=(121 122 123)
+		;;
+		browns)
+			RAINBOW=(58 94 95 96 100 101 102 130 131 132 136 137 138)
+			BG=(94  95)
+			FG=(223 224 225)
+		;;
+		*)
+			RAINBOW=(129 135 99 141 171 177 207 213 134 140 128)
+			BG=(55)
+			FG=(199 200 201)
+		;;
+	esac
+}
+# set the below variable this in .zshrc
+# Choices: kandi, mid, fire, lime, purples, reds, greens, browns, yellows, oranges, blues
+function kload() {
+	if [[ -f "${HOME}/.krystizsh" ]]; then
+		source $HOME/.krystizsh
+		GITBG="${LASTBG}"
+		GITFG="${LASTFG}"
+		OKCOLOR="${LASTOK}"
+	else
+		return_preset ${KRYSTI_THEME}
+		random_bits
+	fi
+}
+function ksetup() {
+	if [[ -z $1 ]]; then
+		echo "Choose kandi, mid, fire, lime, purples, reds, greens, browns, yellows, oranges, blues"
+		return 0
+	fi
+	return_preset $1
+	random_bits
+	KRYSTI_THEME=$1
+	. ${KRYSTI_PATH}/krysti
+}
+function ksave() {
+	echo "Saving settings"
+	echo "RAINBOW=(${RAINBOW[@]})" > ~/.krystizsh
+	echo "LASTFG=\"${GITFG}\"" >> ~/.krystizsh
+	echo "LASTBG=\"${GITBG}\"" >> ~/.krystizsh
+	echo "LASTOK=\"${OKCOLOR}\"" >> ~/.krystizsh
+	echo "ccolor=\"$ccolor\"" >> ~/.krystizsh
+	echo "bcolor=\"$bcolor\"" >> ~/.krystizsh
+	echo "dcolor=\"$dcolor\"" >> ~/.krystizsh
+	echo "pcolor=\"$pcolor\"" >> ~/.krystizsh
+}
+function khelp() {
+	echo "Commands: ksetup [preset], ksave"
+	echo "Presets: kandi, mid, fire, lime, purples, reds, greens, browns, yellows, oranges, blues"
+}
