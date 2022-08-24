@@ -4,7 +4,6 @@ setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 export CLICOLOR=1
-source ~/lscolors.sh
 
 # Saved themes will override KRYSTI_THEME in ~/.krystizsh
 # Delete ~/.krystizsh to restore this theme setting
