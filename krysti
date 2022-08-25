@@ -3,26 +3,20 @@ function krysti_rainbow() {
 	local param=$(print -Pn $@)
 	local len=$(echo  $param | wc -c)
 	rainbow_lens=$(($rainbow_lens + $len))
-	#print -P "Param len: ${len}"
-	#print -P "Passed param: $param"	
 	for ((i = 1; i < $len; i++)); do
-		#kr+="%F{${RAINBOW[$n]}}"
 		kr+=$(print "%{%F{${RAINBOW[$n]}}%}${param[$i]}")
-		#kr+=$(print  "${param[$i]}")
 		[ $n -lt $((${#RAINBOW[@]})) ] && { let "n=n+1"; } || n=1		
 	done
 	print ${kr}
 }
 print -rP $(krysti_rainbow "Loading Krysti's ZSH")
 function krysti_cwd_files() {
-	#shopt -s checkwinsize
 	if [ $COLUMNS -lt 60 ]; then
 		return 0
 	fi
 	fdir=$(find . -mindepth 1 -maxdepth 1 -type d -printf x  | wc -c)
 	ffile=$(find . -mindepth 1 -maxdepth 1 -type f -printf x | wc -c)
 	flink=$(find . -mindepth 1 -maxdepth 1 -type l -printf x | wc -c)
-	#echo "${fdir} ${ffile} ${flink}"
 	filestat=""
 	if [ ! "$fdir" -eq "0" ]; then 
 		filestat+=" ${fdir} "
@@ -52,8 +46,7 @@ function krysti_is_remote() {
 		echo -n " "
 	fi
 }
-function parse_git_branch ()
-{
+function parse_git_branch () {
   color=""  
   if git rev-parse --git-dir >/dev/null 2>&1
   then
