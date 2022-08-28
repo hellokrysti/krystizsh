@@ -84,7 +84,7 @@ kprompt() {
 	print_prompt+="${GITBG}${OKCOLOR}%F{16}%f%k${OKCOLOR}%f "
 	print_prompt+="$(krysti_rainbow ${kcwd})%f${OKCOLOR}%f"
 	print_prompt+="${GITBG}%F{16}%f${OKCOLOR}%f"
-	print_prompt+="${GITFG}${GITBG}$(krysti_rainbow %D{%I:%M%P})%f"
+	print_prompt+="${GITFG}${GITBG}$(krysti_rainbow %D{%I:%M%p})%f"
 	print_prompt+="${GITFG}${gitbranch}%k%f${GITBG/K/F}%f%k"
 	if [[ "$KRYSTI_FILL" == "true" ]]; then
 		kprem=$(($COLUMNS - $kplen - $cwdlen - $gitlen - 19)) # 19 static parts of this prompt
