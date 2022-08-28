@@ -1,4 +1,5 @@
-Krystizsh v0.01
+Krystizsh v0.01<br/><br />
+You may see that 'find' complains about no 'printf' and that can be remedied by installing the 'findutils' in your repository. This inclusion speeds up how it counts directories, files and links in each directory than alternatives would.
 <br /><br />
 Once you copy this repo somewhere you're gonna want to edit the zshrc file and edit the KRYSTI_PATH to where you saved this repo. Optionally you can edit KRYSTI_THEME and choose from 11 presets: kandi, mid, fire, lime, purples, reds, greens, browns, yellows, oranges, blues.
 <br /><br />
