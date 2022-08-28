@@ -32,7 +32,7 @@ function krysti_cwd_files() {
 	echo -n "${cwdprint}"
 }
 function krysti_is_remote() {
-	kcwd=$(pwd | sed 's\'$HOME'\~\')
+	kcwd="${$(pwd)/#$HOME/~}"
 	if [[ "$kcwd" == "~" ]]; then
 		echo -n " "
 		return 0
