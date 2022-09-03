@@ -15,6 +15,8 @@ KRYSTI_PATH="${HOME}/krystizsh"
 fpath=( "${KRYSTI_PATH}" "${fpath[@]}" )
 autoload -Uz $fpath[1]/*(.:t)
 autoload -Uz compinit promptinit add-zsh-hook
+compinit
+promptinit
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} 
 zstyle ':completion:*:*:*:*:descriptions' format '%F{201}-- %d --%f'
 zstyle ':completion:*' completer _extensions _complete _approximate
@@ -56,8 +58,6 @@ bindkey "^[b" backward-word
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
-compinit
-promptinit
 krysti_load
 kload
 krysti

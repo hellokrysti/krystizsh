@@ -72,7 +72,7 @@ function return_preset() {
 		;;
 	esac
 }
-# set the below variable this in .zshrc
+# set the KRYSTI_THEME variable this in .zshrc
 # Choices: kandi, mid, fire, lime, purples, reds, greens, browns, yellows, oranges, blues
 function kload() {
 	if [[ -f "${HOME}/.krystizsh" ]]; then
